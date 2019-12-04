@@ -1,28 +1,24 @@
 <?php
 
-	require_once 'Database.php';
+  class Database {
+    public $conn;
 
-	$database = new Database();
-	$db = $database->getConnection();
+    private $host = 'localhost';
+    private $db_name = 'plankton';
+    private $username = 'root';
+    private $password = '';
 
-	if (!isset($_POST['routeID'])) {
-		echo 'Error, no routeID set';
-		return;
-	}
+    public function getConnection() {
+      $this->conn = null;
 
-	$routeID = $_POST['routeID'];
+      try {
+        $this->conn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
+      } catch(PDOException $exception) {
+        echo 'Connection error: ' . $exception->getMessage();
+      }
 
-	$stmt = $db->prepare('SELECT * FROM Route WHERE routeID = ' . $routeID);
-	$stmt->execute();
+      return $this->conn;
+    }
+  }
 
-	$result = $stmt->fetch(PDO::FETCH_ASSOC);
-
-	if($result){
-		echo json_encode($result);
-	}else{
-		echo 'No route with routID ' . $routeID . ' found';
-	}
-
-	
-
-?>
+  ?>
