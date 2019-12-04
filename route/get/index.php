@@ -16,7 +16,7 @@
 	$stmt->bindValue(':status', 'START');
 	$stmt->execute();
 
-	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+	$result = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
 
 	if($result){
 		echo json_encode($result);
