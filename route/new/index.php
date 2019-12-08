@@ -13,7 +13,7 @@
 		}
 	}
 
-	$stmt = $db->prepare('INSERT INTO Route VALUES(:routeID, :route, :boebotID, :status)');
+	$stmt = $db->prepare('INSERT INTO route VALUES(:routeID, :route, :boebotID, :status)');
 	$stmt->bindParam(':routeID', $_POST['routeID']);
 	$stmt->bindParam(':route', $_POST['route']);
 	$stmt->bindParam(':boebotID', $_POST['boebotID']);
