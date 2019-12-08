@@ -1,8 +1,8 @@
 <?php
 	require_once '../../Database.php';
-
-	$database = new Database();
-	$db = $database->getConnection();
+	
+	$dbInstance = Database::getInstance();
+	$db = $dbInstance->getConnection();
 
 	if (!isset($_POST['boebotID'])) {
 		echo 'Error, no boebotID set';
@@ -10,6 +10,7 @@
 	}
 
 	$boebotID = $_POST['boebotID'];
+	
 
 	$stmt = $db->prepare('SELECT * FROM route WHERE boebotID = :boebotID AND status = :status');
 	$stmt->bindValue(':boebotID', $boebotID);

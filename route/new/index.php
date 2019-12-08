@@ -1,8 +1,9 @@
 <?php
-	require_once 'Database.php';
+	require_once '../../Database.php';
 
-	$database = new Database();
-	$db = $database->getConnection();
+	$dbInstance = Database::getInstance();
+	$db = $dbInstance->getConnection();
+
 	$postValues = array('routeID', 'route', 'boebotID', 'status');
 
 	foreach ($postValues as $postValue) {
