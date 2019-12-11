@@ -1,6 +1,6 @@
 <?php
 	require_once '../../Database.php';
-	
+
 	$dbInstance = Database::getInstance();
 	$db = $dbInstance->getConnection();
 
@@ -10,7 +10,7 @@
 	}
 
 	$boebotID = $_POST['boebotID'];
-	
+
 
 	$stmt = $db->prepare('SELECT * FROM route WHERE boebotID = :boebotID AND status = :status');
 	$stmt->bindValue(':boebotID', $boebotID);
@@ -22,7 +22,7 @@
 	if($result){
 		echo json_encode($result);
 	}else{
-		echo "{'route' : 'null'}";
+		echo '{"route" : "null"}';
 	}
 
 ?>

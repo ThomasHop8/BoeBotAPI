@@ -4,7 +4,7 @@
 	$dbInstance = Database::getInstance();
 	$db = $dbInstance->getConnection();
 
-	$postValues = array('routeID', 'route', 'boebotID', 'status');
+	$postValues = array('route', 'boebotID');
 
 	foreach ($postValues as $postValue) {
 		if (!isset($_POST[$postValue])) {
@@ -13,11 +13,9 @@
 		}
 	}
 
-	$stmt = $db->prepare('INSERT INTO route VALUES(:routeID, :route, :boebotID, :status)');
-	$stmt->bindParam(':routeID', $_POST['routeID']);
+	$stmt = $db->prepare('INSERT INTO route VALUES(null, :route, :boebotID, "READY")');
 	$stmt->bindParam(':route', $_POST['route']);
 	$stmt->bindParam(':boebotID', $_POST['boebotID']);
-	$stmt->bindParam(':status', $_POST['status']);
 
-	echo json_encode(array('succes' => $stmt->execute()));
+	echo json_encode(array('success' => $stmt->execute(), 'routeID' => $db->lastInsertId()));
 ?>
