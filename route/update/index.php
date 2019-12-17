@@ -14,10 +14,14 @@
 		}
 	}
 
-	$stmt = $db->prepare("UPDATE route SET status = :status WHERE routeID = :routeID");
+	$stmt = $db->prepare("UPDATE route SET status = :status, route = COALESCE(NULLIF(:route, ''), route) WHERE routeID = :routeID");
 	$stmt->bindValue(':status', $_POST['status']);
 	$stmt->bindValue(':routeID', $_POST['routeID']);
+	$stmt->bindValue(':route', $_POST['route']);
 
-	echo json_encode(array('succes' => $stmt->execute()));
-	
+	if(isset($_POST['route']))
+		$stmt->bindValue(':route', $_POST['route']);
+
+	echo json_encode(array('success' => $stmt->execute()));
+
 ?>
