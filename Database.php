@@ -1,5 +1,7 @@
 <?php
-
+/*
+  Deze klasse zorgt voor het maken van een connectie met de MySQL database. De klasse maakt gebruik van het singleton pattern.
+*/
 class Database {
     private static $instance = null;
     private $conn;
@@ -19,7 +21,7 @@ class Database {
     }
   }
 
-
+  //Deze methode kijkt of er al een instantie van de database klasse is aangemaakt. Als dit zo is dan geeft hij deze instantie terug. Als dit niet zo is, dan wordt er een nieuw database object aangemaakt.
   public static function getInstance(){
 
     if (self::$instance == null) {

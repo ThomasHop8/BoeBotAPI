@@ -1,4 +1,9 @@
 <?php
+
+	/*
+		Deze api functie zorgt ervoor dat er een nieuwe route vanuit de java applicatie in de database toegevoegd kan worden. 
+		Een nieuwe route in de database krijgt de status 'READY'. De api stuurt een json bericht terug naar de java applicatie met de mededeling of het toevoegen wel of niet gelukt is.
+	*/
 	require_once '../../Database.php';
 
 	$dbInstance = Database::getInstance();

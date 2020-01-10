@@ -1,4 +1,8 @@
 <?php
+
+	/*
+		Deze api functie zorgt ervoor dat er een nieuwe Boebot in de database toegevoegd kan worden. De api stuurt een json bericht terug naar de java applicatie met de mededeling of het toevoegen wel of niet gelukt is.
+	*/
 	require_once '../../Database.php';
 
 	$dbInstance = Database::getInstance();
