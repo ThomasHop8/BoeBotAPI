@@ -1,7 +1,7 @@
 <?php
 
 	/*
-		Deze api functie zorgt voor het ophalen van de routes uit de database die de status 'START' hebben. Deze status geeft aan dat de boebot met het boebotID dat meegegeven wordt in de POST, de route moet gaan rijden. De eerste route van de opgehaalde resultaten wordt in json formaat doorgestuurd naar de java applicatie.   
+		Deze api functie zorgt voor het ophalen van routes uit de database die bij een bepaalde boebot horen. Routes kunnen opgehaald worden op bais van de status van de route of via de routeID. De eerste route van de opgehaalde resultaten wordt in json formaat doorgestuurd naar de java applicatie.   
 	*/
 	require_once '../../Database.php';
 
