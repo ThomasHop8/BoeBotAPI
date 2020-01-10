@@ -11,10 +11,15 @@
 
 	$boebotID = $_POST['boebotID'];
 
+	if(isset($_POST['status'])) {
+		$stmt = $db->prepare('SELECT * FROM route WHERE boebotID = :boebotID AND status = :status');
+		$stmt->bindValue(':status', $_POST['status']);
+	} else {
+		$stmt = $db->prepare('SELECT * FROM route WHERE boebotID = :boebotID ORDER BY routeID DESC');
+	}
 
-	$stmt = $db->prepare('SELECT * FROM route WHERE boebotID = :boebotID AND status = :status');
 	$stmt->bindValue(':boebotID', $boebotID);
-	$stmt->bindValue(':status', 'START');
+
 	$stmt->execute();
 
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC)[0];
