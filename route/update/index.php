@@ -26,6 +26,10 @@
 	if(isset($_POST['route']))
 		$stmt->bindValue(':route', $_POST['route']);
 
-	echo json_encode(array('success' => $stmt->execute()));
+	$stmt->execute();
+
+	$rows = $stmt->rowCount();
+	
+	echo json_encode(array('success' => ($rows >= 1)));
 
 ?>
